@@ -1,0 +1,21 @@
+﻿{
+  // you can define multiple editors
+  propertyEditors: [
+    {
+      /*this must be a unique alias*/
+      alias: "YouTubeCoverImage",
+      /*the name*/
+      name: "YouTube Cover Image",
+      /*the icon*/
+      icon: "icon-code",
+      editor: {
+        view: "~/App_Plugins/YouTubeCoverImage/youtubecoverimage.html"
+      }
+    }
+  ]
+  ,
+  // array of files we want to inject into the application on app_start
+  javascript: [
+    '~/App_Plugins/YouTubeCoverImage/youtubecoverimage.controller.js'
+  ]
+}
