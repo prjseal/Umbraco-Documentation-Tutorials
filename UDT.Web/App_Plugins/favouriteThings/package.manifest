@@ -1,0 +1,7 @@
+﻿{
+  "javascript": [
+  "~/App_Plugins/favouriteThings/favouriteThings.resource.js",
+  "~/App_Plugins/favouriteThings/backoffice/favouriteThingsAlias/edit.controller.js",
+  "~/App_Plugins/favouriteThings/backoffice/favouriteThingsAlias/delete.controller.js"
+  ]
+}
