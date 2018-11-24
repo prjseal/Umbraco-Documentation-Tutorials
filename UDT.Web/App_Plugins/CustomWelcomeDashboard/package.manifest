@@ -1,0 +1,10 @@
+﻿{
+  "javascript": [
+    /*any comma delimited list of JavaScript files appear here*/
+    "~/app_plugins/CustomWelcomeDashboard/customwelcomedashboard.controller.js"
+  ],
+  "css": [
+    /*a comma delimited list of stylesheets appear here:*/
+    "~/app_plugins/CustomWelcomeDashboard/customwelcomedashboard.css"
+  ]
+}
