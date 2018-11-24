@@ -12,3 +12,5 @@ A project for me to follow along with the tutorials in the Umbraco Documentation
 4. I did the tutorial to add a [custom section](https://our.umbraco.com/documentation/Extending/Section-Trees/sections)
 
 5. I started the tutorial for adding a [tree](https://our.umbraco.com/documentation/Extending/Section-Trees/trees-v7) to the custom section. It's not finished. I got stuck as the documentation doesn't take you all the way through.
+
+6. Created a custom dashboard by following [this tutorial](https://our.umbraco.com/Documentation/Tutorials/Creating-a-Custom-Dashboard/), but there was an error near the end.
