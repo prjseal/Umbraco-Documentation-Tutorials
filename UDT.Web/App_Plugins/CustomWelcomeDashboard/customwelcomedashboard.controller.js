@@ -5,36 +5,52 @@
         vm.UserName = user.name;
     });
 
-    logResource.getUserLog("save", new Date()).then(function (response) {
-        console.log(response);
-        var logEntries = [];
+    var userLogoptions = {
+        pageSize: 10,
+        pageNumber: 1,
+        orderDirection: "Descending",
+        sinceDate: new Date(2018, 0, 1)
+    };
 
+    logResource.getPagedUserLog(userLogoptions)
+    .then(function (response) {
+        console.log(response)
+        vm.UserLogHistory = response;
+        var filteredLogEntries = [];
         // loop through the response, and filter out save log entries we are not interested in
-        angular.forEach(response, function (item) {
+        angular.forEach(response.items, function (item) {
             // if no entity exists -1 is returned for the nodeId (eg saving a macro would create a log entry without a nodeid)
             if (item.nodeId > 0) {
-                // this is the only way to tell them apart - whether the comment includes the words Content or Media!!
-                if (item.comment.match("(\\bContent\\b|\\bMedia\\b)")) {
-                    if (item.comment.indexOf("Media") > -1) {
+                if (item.logType == "Save") {
+                    if (item.entityType == "Media") {
                         // log entry is a media item
-                        item.entityType = "Media";
                         item.editUrl = "media/media/edit/" + item.nodeId;
+                    } else {
+                        console.log(item.entityType);
+                        console.log('Not Media');
                     }
-                    if (item.comment.indexOf("Content") > -1) {
+
+                    if (item.entityType == "Document") {
                         // log entry is a media item
-                        item.entityType = "Document";
                         item.editUrl = "content/content/edit/" + item.nodeId;
+                    } else {
+                        console.log('Not Document');
                     }
+
+                    console.log(item);
                     // use entityResource to retrieve details of the content/media item
-                    entityResource.getById(item.nodeId, item.entityType).then(function (ent) {
-                        console.log(ent);
+                    entityResource.getById(item.nodeId, item.entityType).then(function(ent) {
                         item.Content = ent;
                     });
-                    logEntries.push(item);
+                    filteredLogEntries.push(item);
+                } else {
+                    console.log('Not Save');
+                    console.log('log type: ' + item.logType);
                 }
+            } else {
+                console.log('no entity exists');
             }
-            console.log(logEntries);
-            vm.LogEntries = logEntries;
         });
+        vm.UserLogHistory.items = filteredLogEntries;
     });
 });
